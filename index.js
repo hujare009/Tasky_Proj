@@ -1,14 +1,14 @@
 const taskContainer = document.querySelector(".task__container");
 console.log(taskContainer);
 
-// creating a new card using card credentials from html... 
+// creating a new card using card credentials from html...
 const newCard = ({
   id,
   ImageUrl,
   TaskTitle,
   TaskType,
-  TaskDescription
-  }) => '<div class="col-md-6 col-lg-4" id=${id}>
+  TaskDescription,
+}) => `<div class="col-md-6 col-lg-4" id=${id}>
            <div class ="card ">
   <div class="card-header d-flex justify-content-end gap-2">
     <button type="button" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></button>
@@ -28,13 +28,11 @@ const newCard = ({
 
   </div>
 </div>
-</div>';
-        
-        
+</div>`;
 
 const saveChanges = () => {
   const taskData = {
-    id: '${Date.now()}',
+    id: "${Date.now()}",
     ImageUrl: document.getElementById("imageurl").value,
     TaskTitle: document.getElementById("tasktitle").value,
     TaskType: document.getElementById("tasktype").value,
@@ -42,6 +40,6 @@ const saveChanges = () => {
   };
 
   const createNewCard = newCard(taskData);
-  taskContainer.insertAdjacentHTML("beforeend", createNewCard);
 
+  taskContainer.insertAdjacentHTML("beforeend", createNewCard);
 };
