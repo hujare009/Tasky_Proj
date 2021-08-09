@@ -3,12 +3,10 @@ const taskContainer = document.querySelector(".task__container");
 //Global Store
 let globalStore = [];
 
-// creating a new card using card credentials from html...
 const newCard = ({
   id,
   imageUrl,
   taskTitle,
-  taskType,
   taskDescription,
 }) => `<div class="col-md-6 col-lg-4" id=${id}>
            <div class="card">
@@ -71,7 +69,6 @@ const saveChanges = () => {
 
   taskContainer.insertAdjacentHTML("beforeend", createNewCard);
   globalStore.push(taskData);
-  console.log(globalStore);
 
   //add to local storage
   updateLocalStorage(); //setItem
@@ -93,7 +90,6 @@ const deleteCard = (event) => {
   globalStore = globalStore.filter((cardObject) => cardObject.id !== targetID);
   updateLocalStorage(); // it will update storage when del.or create
 
-  // access dom to remove the slides.
   if (tagname === "BUTTON") {
     //task__container.
     return taskContainer.removeChild(
@@ -104,12 +100,9 @@ const deleteCard = (event) => {
   return taskContainer.removeChild(
     event.target.parentNode.parentNode.parentNode.parentNode
   );
-
-  //loop overthe new globalStore, and inject update card to DOM
 };
 
 const editCard = (event) => {
-  console.log("hey edit is called..!");
   event = window.event;
   const targetID = event.target.id;
   const tagname = event.target.tagName;
@@ -122,7 +115,6 @@ const editCard = (event) => {
     parentElement = event.target.parentNode.parentNode.parentNode;
   }
 
-  //this will give you the access to edit the given information..
   let taskTitle = parentElement.childNodes[5].childNodes[1];
   let taskDescription = parentElement.childNodes[5].childNodes[3];
   let taskType = parentElement.childNodes[5].childNodes[5];
